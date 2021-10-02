@@ -40,7 +40,7 @@
 <div align=center>
 <img src="用例图.png" />
 </div>
-&nbsp;
+<br/>
 ---
 ### 类图
 #### 类图介绍
