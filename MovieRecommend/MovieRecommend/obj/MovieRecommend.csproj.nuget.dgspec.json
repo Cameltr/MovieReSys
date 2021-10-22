@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\xbc\\Fighting\\otherSubject\\SOFTDe\\project\\MovieReSys\\MovieRecommend\\MovieRecommend\\MovieRecommend.csproj": {}
+  },
+  "projects": {
+    "D:\\xbc\\Fighting\\otherSubject\\SOFTDe\\project\\MovieReSys\\MovieRecommend\\MovieRecommend\\MovieRecommend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\xbc\\Fighting\\otherSubject\\SOFTDe\\project\\MovieReSys\\MovieRecommend\\MovieRecommend\\MovieRecommend.csproj",
+        "projectName": "MovieRecommend",
+        "projectPath": "D:\\xbc\\Fighting\\otherSubject\\SOFTDe\\project\\MovieReSys\\MovieRecommend\\MovieRecommend\\MovieRecommend.csproj",
+        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+        "outputPath": "D:\\xbc\\Fighting\\otherSubject\\SOFTDe\\project\\MovieReSys\\MovieRecommend\\MovieRecommend\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\VS\\shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Deedle": {
+              "target": "Package",
+              "version": "[2.4.3, )"
+            },
+            "MathNet.Numerics": {
+              "target": "Package",
+              "version": "[4.15.0, )"
+            },
+            "NumSharp": {
+              "target": "Package",
+              "version": "[0.30.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

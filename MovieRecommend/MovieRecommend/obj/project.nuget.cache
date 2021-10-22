@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "wKcnqCGRQeh1h64lj/3gmVHmgDiFkIsen0Qom06CtLgpfLYdrX3nadFcBVqh3BsThkt6nGYxt3fhTieYWMN+Xw==",
+  "success": true,
+  "projectFilePath": "D:\\xbc\\Fighting\\otherSubject\\SOFTDe\\project\\MovieReSys\\MovieRecommend\\MovieRecommend\\MovieRecommend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\asus\\.nuget\\packages\\deedle\\2.4.3\\deedle.2.4.3.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\fsharp.core\\4.5.2\\fsharp.core.4.5.2.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\numsharp\\0.30.0\\numsharp.0.30.0.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,13 @@
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\bin\Debug\netcoreapp2.0\MovieRecommend.deps.json
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\bin\Debug\netcoreapp2.0\MovieRecommend.runtimeconfig.json
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\bin\Debug\netcoreapp2.0\MovieRecommend.runtimeconfig.dev.json
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\bin\Debug\netcoreapp2.0\MovieRecommend.dll
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\bin\Debug\netcoreapp2.0\MovieRecommend.pdb
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\obj\Debug\netcoreapp2.0\MovieRecommend.csproj.AssemblyReference.cache
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\obj\Debug\netcoreapp2.0\MovieRecommend.GeneratedMSBuildEditorConfig.editorconfig
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\obj\Debug\netcoreapp2.0\MovieRecommend.AssemblyInfoInputs.cache
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\obj\Debug\netcoreapp2.0\MovieRecommend.AssemblyInfo.cs
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\obj\Debug\netcoreapp2.0\MovieRecommend.csproj.CoreCompileInputs.cache
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\obj\Debug\netcoreapp2.0\MovieRecommend.dll
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\obj\Debug\netcoreapp2.0\MovieRecommend.pdb
+D:\xbc\Fighting\otherSubject\SOFTDe\MovieRecommend\MovieRecommend\obj\Debug\netcoreapp2.0\MovieRecommend.genruntimeconfig.cache
