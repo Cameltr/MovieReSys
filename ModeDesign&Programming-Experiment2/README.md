@@ -1,5 +1,5 @@
 ## 基于用户的电影推荐算法
-![](http://latex.codecogs.com/gif.latex?\\sigma=\sqrt{\frac{1}{n}{\sum_{k=1}^n(x_i-\bar{x})^2}})
+
 * 核心思想：**人以群分** -> 基于用户的最近邻推荐，某用户 ![](http://latex.codecogs.com/gif.latex?a) 可能只对电影库中的一小部分电影给过评分，但是可以通过历史评分来找出与 ![](http://latex.codecogs.com/gif.latex?a) 有相似兴趣的人，并根据他们对其他电影的评分**共同给出**一个 ![](http://latex.codecogs.com/gif.latex?a) 可能感兴趣的电影列表。算法步骤如下：
 
 1. 对于请求推荐的用户 ![](http://latex.codecogs.com/gif.latex?a)，计算系统中的每个用户 ![](http://latex.codecogs.com/gif.latex?b) 和 ![](http://latex.codecogs.com/gif.latex?a) 之间的相似度 ![](http://latex.codecogs.com/gif.latex?s_{a,b}) ：
@@ -20,8 +20,11 @@
 
 3. 因为每个人的评分习惯不同：有些人喜欢给高评分，比如满意给5分，不满意给3分；有些人则比较鲜明，满意给5分，不满意给1分。所以，预测时考虑偏置项，用每个人减去均值后的**偏差**来衡量喜欢程度，则预测用户 ![](http://latex.codecogs.com/gif.latex?a) 对某电影 ![](http://latex.codecogs.com/gif.latex?i) 的评分 ![](http://latex.codecogs.com/gif.latex?\widehat{r}_{a,i}) ：
  <br/>
+ <div align=center>
 ![](http://latex.codecogs.com/gif.latex?\widehat{r}_{a,i}=\overline{r}_a + \frac{1}{\sum_{b\in N_a}^{}s_{a,b}} \sum_{b\in N_a}^{}s_{a,b}\left (r_{b,i} -\overline{r}_b \right))
+ </div>
  <br/>
+ 
    其中， ![](http://latex.codecogs.com/gif.latex?N_a) 表示由步骤 2 得到的用户 ![](http://latex.codecogs.com/gif.latex?a) 的近邻用户集合，![](http://latex.codecogs.com/gif.latex?\overline{r}_a)、 ![](http://latex.codecogs.com/gif.latex?\overline{r}_b) 、![](http://latex.codecogs.com/gif.latex?s_{a,b})、![](http://latex.codecogs.com/gif.latex?r_{b,i}) 定义同上。
 
 
