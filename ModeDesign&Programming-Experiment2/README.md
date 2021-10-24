@@ -6,7 +6,7 @@
    <br/>
    
 <div align=center>
-<img src="https://latex.codecogs.com/svg.image?s_{a,b}=\frac{\sum_{&space;i&space;\in&space;I_{a,b}&space;}&space;\left&space;(&space;r_{a,i}&space;-&space;\overline{r}_a&space;\right&space;)&space;\left&space;(&space;r_{b,i}&space;-&space;\overline{r}_b&space;\right&space;)}{\sqrt{\sum_{&space;i&space;\in&space;I_{a,b}&space;}&space;\left&space;(&space;r_{a,i}-\overline{r}_a&space;\right&space;)^2&space;}\sqrt{\sum_{&space;i&space;\in&space;I_{a,b}&space;}&space;\left&space;(&space;r_{b,i}-\overline{r}_b&space;\right&space;)^2&space;}}" title="s_{a,b}=\frac{\sum_{ i \in I_{a,b} } \left ( r_{a,i} - \overline{r}_a \right ) \left ( r_{b,i} - \overline{r}_b \right )}{\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{a,i}-\overline{r}_a \right )^2 }\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{b,i}-\overline{r}_b \right )^2 }}" />
+<img src="f1.svg" />
 </div>
 <br/>
    
