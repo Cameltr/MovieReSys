@@ -21,7 +21,7 @@
 3. 因为每个人的评分习惯不同：有些人喜欢给高评分，比如满意给5分，不满意给3分；有些人则比较鲜明，满意给5分，不满意给1分。所以，预测时考虑偏置项，用每个人减去均值后的**偏差**来衡量喜欢程度，则预测用户 ![](http://latex.codecogs.com/gif.latex?a) 对某电影 ![](http://latex.codecogs.com/gif.latex?i) 的评分 ![](http://latex.codecogs.com/gif.latex?\widehat{r}_{a,i}) ：
  <br/>
  <div align=center>
-<img src="http://latex.codecogs.com/gif.latex?\widehat{r}_{a,i}=\overline{r}_a + \frac{1}{\sum_{b\in N_a}^{}s_{a,b}} \sum_{b\in N_a}^{}s_{a,b}\left (r_{b,i} -\overline{r}_b \right)" />
+<img src="http://latex.codecogs.com/gif.latex?\\widehat{r}_{a,i}=\overline{r}_a + \frac{1}{\sum_{b\in N_a}^{}s_{a,b}} \sum_{b\in N_a}^{}s_{a,b}\left (r_{b,i} -\overline{r}_b \right)" />
  </div>
  <br/>
  
