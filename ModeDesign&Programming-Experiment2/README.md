@@ -28,7 +28,7 @@
 **人以群分**：基于用户的最近邻推荐，某用户 ![](http://latex.codecogs.com/gif.latex?a) 可能只对电影库中的一小部分电影给过评分，但是可以通过历史评分来找出与 ![](http://latex.codecogs.com/gif.latex?a) 有相似兴趣的人，并根据他们对其他电影的评分**共同给出**一个 ![](http://latex.codecogs.com/gif.latex?a) 可能感兴趣的电影列表。算法步骤如下：
 
 1. 对于请求推荐的用户 ![](http://latex.codecogs.com/gif.latex?a)，计算系统中的每个用户 ![](http://latex.codecogs.com/gif.latex?b) 和 ![](http://latex.codecogs.com/gif.latex?a) 之间的相似度 ![](http://latex.codecogs.com/gif.latex?s_{a,b}) ：
-   <br/>
+<br/>
 <div align=center>
 <img src=".\pngs\f1.svg" />
 </div>
@@ -57,8 +57,8 @@
 
 <div align=center>
 <img src=".\pngs\recommend_example.png" width="700"/>
-<div>
-
+</div>
+ 
 ## 观察者模式
 ### 代码文件
 - Subject.cs
@@ -71,7 +71,7 @@
 
 <div align=center>
 <img src=".\pngs\observer_uml.png" width="700"/>
-<div>
+</div>
 
 其中Subject和Observer为抽象类，分别是物品和观察者。UserMotionSubject继承Subject类，用于表示用户的行为，UserMotionObserver继承Observer类，通过观察用户的行为做出相应的举动。
 ### 工作流程
@@ -80,20 +80,24 @@
 ### 运行实例
 从推荐算法的演示中可以看到在没有进行任何打分时，基于用户3原始数据的推荐结果，现在我们让用户3给电影50(Star War)打上5分，然后再次进行推荐，运行结果如图所示
 
+
 <div align=center>
 <img src=".\pngs\after_recommend_example.png" width="700"/>
-<div>
+</div>
 
+ 
 ## 简单工厂模式
 ### 代码文件
 - MovieReSysFactory.cs
 ### 核心思想
 工厂模式将产品的生产和使用进行了区分。在该系统中，使用简单工厂模式将推荐算法类对象的创建和使用进行区分。我们只实现了一种推荐算法。该简单工厂模式的UML图如图所示
 
+ 
 <div align=center>
 <img src=".\pngs\factory_uml.png" width="700"/>
-<div>
+</div>
 
+ 
 ### 工作流程
 在MovieReSysFactory类中，使用getProduct()函数可以获得推荐算法产品对象，为了避免重复生产，使用一个字典(productMap)来存储已经生产过的推荐算法产品，并且使用算法产品的对象名作为键来进行产品的获取。
 同时，将getProduct()函数和productMap设置为静态函数和静态变量，从而可以直接通过类名来获取算法产品
