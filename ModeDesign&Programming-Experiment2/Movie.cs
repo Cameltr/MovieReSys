@@ -21,4 +21,14 @@ namespace MovieReSys
             Url = url;
         }
     }
+
+    class ReMovie : Movie
+    {
+        public double Score { get; set; }
+
+        public ReMovie(int index, string name, string date, string url, double score) : base(index, name, date, url)
+        {
+            Score = score;
+        }
+    }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MovieReSys
 {
-    class Observer
+    interface Observer
     {
+        void Update(string MessageType, int userId, int movieId, int submitScore);
     }
 }

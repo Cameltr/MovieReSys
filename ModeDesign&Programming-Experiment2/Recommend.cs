@@ -126,7 +126,7 @@ namespace MovieReSys
         }
 
 
-        public Recommend(string path)
+        public Recommend(string path = @"E:\ml-100k\")
         {
             loadData(path);
             nerbNums = new int[maxUser];
@@ -159,7 +159,7 @@ namespace MovieReSys
             return sim;
         }
 
-        public int[] userRecom(int userId)
+        public List<ReMovie> userRecom(int userId)
         {
             // 需要重新做
             if (isChanged || nerbNums[userId - 1] == -1)
@@ -204,20 +204,29 @@ namespace MovieReSys
             preScores *= -1;
             // 电影按打分降序排列
             var movieIndexs = np.argsort<double>(preScores);
+            var haveScored = hasScores[userId-1][movieIndexs];
             preScores = -1 * preScores[movieIndexs];
+
+            movieIndexs = movieIndexs[haveScored == 0];
+            preScores = preScores[haveScored == 0];
+
+            // 推荐的电影序列
+            List<ReMovie> reMovies = new List<ReMovie>();
 
             for (int i = 0; i < 10; i++)
             {
                 int movieIndex = movieIndexs[i];
                 double pre = preScores[i];
                 Movie movie = movieList[movieIndex];
-                Console.WriteLine($"{movie.Index}、 {movie.Name}, preScore：{pre.ToString("f3")}");
-                Console.WriteLine($"date: {movie.Date}");
-                Console.WriteLine($"url: {movie.Url}");
-                Console.WriteLine("------------------");
+                ReMovie reMovie = new ReMovie(movie.Index, movie.Name, movie.Date, movie.Url, pre);
+                reMovies.Add(reMovie);
+                // Console.WriteLine($"{movie.Index}、 {movie.Name}, preScore：{pre.ToString("f3")}");
+                // Console.WriteLine($"date: {movie.Date}");
+                // Console.WriteLine($"url: {movie.Url}");
+                // Console.WriteLine("------------------");
             }
 
-            return null;
+            return reMovies;
         }
 
         public void changeScore(int userId, int movieId, int score)

@@ -10,9 +10,9 @@ namespace MovieReSys
     {
         public void Update(string MessageType, int userId, int movieId, int submitScore)
         {
-            string path = @"D:\xbc\Fighting\otherSubject\SOFTDe\data\ml-100k\";
-            Recommend recommend = new Recommend(path);
-            recommend.changeScore(userId, movieId, submitScore);
+            MovieReSysAlgorithm movieReSysAlgorithm = (MovieReSysAlgorithm)MovieReSysFactory.getProduct("MovieReSysAlgorithm");
+            movieReSysAlgorithm.UserUpdateScore(userId, movieId, submitScore);
+            Console.WriteLine(String.Format("打分成功！： 用户 {0} 给电影 {1} 打分 {2}", userId, movieId, submitScore));
         }
     }
 }
