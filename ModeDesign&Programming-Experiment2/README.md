@@ -3,9 +3,7 @@
 * 核心思想：**人以群分** -> 基于用户的最近邻推荐，某用户 $a$ 可能只对电影库中的一小部分电影给过评分，但是可以通过历史评分来找出与 $a$ 有相似兴趣的人，并根据他们对其他电影的评分**共同给出**一个 $a$ 可能感兴趣的电影列表。算法步骤如下：
 
 1. 对于请求推荐的用户 $a$，计算系统中的每个用户 $b$ 和 $a$ 之间的相似度 $s_{a,b}$ ：
-   $$
-   s_{a,b}=\frac{\sum_{ i \in I_{a,b} } \left ( r_{a,i} - \overline{r}_a \right ) \left ( r_{b,i} - \overline{r}_b \right )}{\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{a,i}-\overline{r}_a \right )^2 }\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{b,i}-\overline{r}_b \right )^2 }}
-   $$
+   ![](http://latex.codecogs.com/gif.latex?s_{a,b}=\frac{\sum_{ i \in I_{a,b} } \left ( r_{a,i} - \overline{r}_a \right ) \left ( r_{b,i} - \overline{r}_b \right )}{\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{a,i}-\overline{r}_a \right )^2 }\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{b,i}-\overline{r}_b \right )^2 }})
    其中，$r_{a,i}$、$r_{b,i}$ 表示用户 $a$ 或用户 $b$ 对电影 $i$ 的评分，$\overline{r}_a$、 $\overline{r}_b$ 表示用户 $a$ 或用户 $b$ 所有历史评分的均值，$I_{a,b}$ 表示用户 $a$ 和用户 $b$ 打过分的电影的交集。
 
    
@@ -25,5 +23,5 @@
 4. 算出用户 $a$ 对每个剩余电影的预测评分后，按照降序排列，取出前若干个的电影序号，并根据序号到系统电影列表中取出相应电影的信息，即得到推荐电影列表。控制台运行实例如下：
 
 <div align=center>
-<img src=".\recommend_example.png" width="500"/>
+<img src=".\recommend_example.png" width="700"/>
 <div>
