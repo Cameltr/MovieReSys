@@ -4,8 +4,8 @@
 
 1. 对于请求推荐的用户 ![](http://latex.codecogs.com/gif.latex?a)，计算系统中的每个用户 ![](http://latex.codecogs.com/gif.latex?b) 和 ![](http://latex.codecogs.com/gif.latex?a) 之间的相似度 ![](http://latex.codecogs.com/gif.latex?s_{a,b}) ：
    <br/>
-   ![](http://latex.codecogs.com/gif.latex?\s_{a,b}=\frac{\sum_{ i \in I_{a,b} } \left ( r_{a,i} - \overline{r}_a \right ) \left ( r_{b,i} - \overline{r}_b \right )}{\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{a,i}-\overline{r}_a \right )^2 }\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{b,i}-\overline{r}_b \right )^2 }})
-   
+   ![](http://latex.codecogs.com/gif.latex?s_{a,b}=\frac{\sum_{ i \in I_{a,b} } \left ( r_{a,i} - \overline{r}_a \right ) \left ( r_{b,i} - \overline{r}_b \right )}{\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{a,i}-\overline{r}_a \right )^2 }\sqrt{\sum_{ i \in I_{a,b} } \left ( r_{b,i}-\overline{r}_b \right )^2 }})
+   <br/>
    其中，$r_{a,i}$、$r_{b,i}$ 表示用户 $a$ 或用户 $b$ 对电影 $i$ 的评分，$\overline{r}_a$、 $\overline{r}_b$ 表示用户 $a$ 或用户 $b$ 所有历史评分的均值，$I_{a,b}$ 表示用户 $a$ 和用户 $b$ 打过分的电影的交集。
 
    
