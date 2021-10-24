@@ -24,5 +24,6 @@
 
 4. 算出用户 $a$ 对每个剩余电影的预测评分后，按照降序排列，取出前若干个的电影序号，并根据序号到系统电影列表中取出相应电影的信息，即得到推荐电影列表。控制台运行实例如下：
 
-<img src=".\recommend_example.png">
-
+<div align=center>
+<img src=".\recommend_example.png" width="500"/>
+<div>
