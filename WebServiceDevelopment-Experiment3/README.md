@@ -32,8 +32,10 @@
 <div align=center>
 <img src=".\image\前端页面" />
 </div>
-
-![image-20211128171551989](.\image\分页区)
+  
+<div align=center>
+<img src=".\image\分页区" />
+</div>
 
 ---
 
@@ -52,48 +54,66 @@
 * 点击“我的推荐”功能，前端会使用 `ajax` 发送 `get` 请求，获得推荐电影列表。对应 `api` 的 `url` 为 `'https://localhost:5001/api/ReSys/recommendMovies/' + this.userId`。指定 `contentType` 为 `application/json` 。设置回调函数：
 
   * 如果后端返回的 `status` 为 404，说明推荐失败，弹出相应的警告信息
-
-    ![image-20211128120745352](.\image\警告)
-
+  
+    <div align=center>
+    <img src=".\image\警告" />
+    </div>
+  
   * 如果后端返回的 `status` 为 202，说明推荐成功。弹出成功提示框，页面滚动到最顶部，将新闻数量赋值给 `movieNum` 以确定分的页数，跳转到第一页，并将电影列表绑定到相关变量 `showList` 上
 
-    ![image-20211128161525248](.\image\成功)
+    <div align=center>
+    <img src=".\image\成功" />
+    </div>
 
     可以看到，当前向3号用户共推荐50部电影，每部电影都使用一个`card`进行展示，展示内容包括：电影的名字，序号、上映时间，推荐指数，以及与推荐指数对应的⭐数量。
 
 * 点击“我的打分”功能，前端也会使用 `ajax` 发送 `get` 请求，获得已经打分的电影列表。这次调用的 `api` 的 `url` 是 `'https://localhost:5001/api/ReSys/scoredMovies/' + that.userId`。同样，如果后端返回的 `status` 为 404，说明推荐失败，弹出相应的警告信息；而如果后端返回的 `status` 为 202，说明获取成功。弹出成功提示框，页面滚动到最顶部，将已打分新闻数量赋值给 `movieNum` 以确定分的页数，跳转到第一页，并将电影列表绑定到相关变量 `showList` 上。
 
-  ![image-20211128161553761](.\image\已打)
+    <div align=center>
+    <img src=".\image\已打" />
+    </div>
 
 #### 3.3 打分组件
 
 打分组件的五颗⭐可以进行点击，点击相应的星或半星后，会使用 `ajax` 发送 `post` 请求，更新后端数据库。调用的 `api` 的 `url` 是 `'https://localhost:5001/api/ReSys/scoreMovie'`。向后端传递的参数包括：用户ID、电影ID以及分数，使用 `JSON.stringify()` 函数将参数列表化为 `json` 格式。后端执行相应的更新后，返回一个状态：如果返回状态为 202，提示打分成功；如果返回状态为 404，警告操作失败。
 
-![image-20211128161702540](.\image\打分)
+ <div align=center>
+ <img src=".\image\打分" />
+ </div>
 
 如图所示，电影 `Silence of the Lambs, The(1991)` 原本的推荐指数是 `3.233`，现在点击打分控件，打分为 `4.5` 分，打分成功。现在重新获取推荐电影可以发现，刚刚打分的电影，已经不在推荐列表上了：
-
-![image-20211128161932536](.\image\成功_1)
+  
+ <div align=center>
+ <img src=".\image\成功" />
+ </div>
 
 重新获取已打分列表可以发现，打分的电影数从 `58` 变为了 `59`， `Silence of the Lambs, The(1991)` 也已在列：
-
-![image-20211128162154198](.\image\已打_1)
+ 
+ <div align=center>
+ <img src=".\image\已打_1" />
+ </div>
 
 #### 3.4 界面底部页码
 
 页面滑动到最下端时，会出现页面跳转控件
-
-![image-20211128170121287](.\image\页码)
+ 
+ <div align=center>
+ <img src=".\image\页码" />
+ </div>
 
 点击相应的页数，前端会使用 `ajax` 发送 `get` 请求，调用的 `api` 为 `'https://localhost:5001/api/ReSys/pageChanged/' + that.currentPage + '/' + that.showType`。其中，`currentPage` 表示要跳转的页码数，`showType` 代表当前要展示的电影种类（推荐电影或已打分电影）。接收到返回值后，首先将页面滚动到顶部，然后将电影列表绑定到相关变量 `showList` 上，如下图显示了我的打分里第二页的电影：
-
-![image-20211128171043626](.\image\第二页)
+  
+ <div align=center>
+ <img src=".\image\第二页" />
+ </div>
 
 #### 3.5 返回顶部按钮
 
 为了便于用户操作，在前端添加了“返回顶部”按钮，起初不会出现，当页面向下滚动超过 `500px` 时，就会出现在左下角，点击后页面自动在 `0.5s` 内滚动到最顶端：
-
-![image-20211128171444650](.\image\返回顶端)
+  
+ <div align=center>
+ <img src=".\image\返回顶端" />
+ </div>
 
 ## 二、REST API的设计与实现
 
