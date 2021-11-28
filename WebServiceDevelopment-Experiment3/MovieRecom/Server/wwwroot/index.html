@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie-Recom</title>
+    <link rel="icon" href="./statics/image/upLogoMovie.png">
+
+    <script type="text/javascript" src="./statics/js/vue.js"></script>
+       <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./statics/css/index.css">
+
+       <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    
+    <script type="text/javascript" src="./statics/js/jquery.js"></script>
+    <!-- <script type="text/javascript" src="/static/js/index.js"></script> -->
+
+    <!-- <script type="stylesheet" src="/static/css/index.css"></script> -->
+
+
+</head>
+<body>
+    <!-- {% csrf_token %} -->
+    <div id="app" v-cloak>
+      <el-container>
+
+        <!-- 头部包含搜索框 -->
+    <el-header>
+        <el-row id="headRow" style="margin-top: 25px;">
+            <el-col :xs="6" :sm="5" :md="4" :lg="3" :xl="2">
+                <img src="./statics/image/mainLogoMovie.png" style="height: 80px; border-radius: 15px; max-width: 100%" />
+            </el-col>
+            <el-col :xs="9" :sm="8" :md="8" :lg="7" :xl="7" style="margin-top: 10px; margin-left: 30px;">
+                <el-input placeholder="请输入用户ID" v-model="userId" :disabled="disable" clearable>
+                    <el-button id="iconButton" slot="append" icon="el-icon-search" @click="search"></el-button>
+                </el-input>
+            </el-col>
+            <el-col :xs="6" :sm="5" :md="4" :lg="3" :xl="2">
+                <el-tooltip effect="light" placement="right" :enterable="false">
+                    <div slot="content">点击获取推荐电影</div>
+                    <el-button type="primary" style="margin-top: 10px; margin-left: 0px; border-radius: 0px 15px 15px 0px; height: 52px;" @click="mainSearch">电影推荐</el-button>
+                </el-tooltip>
+
+            </el-col>
+            
+        </el-row>
+
+    </el-header>
+
+
+    <el-container>
+        <!-----------侧边选项栏------------->
+        <el-aside width="190px" style="margin-left:20px">
+            <el-menu default-active='1'>
+
+                <el-card>
+                    <el-menu-item index='1' @click="sortType=1; disable=false; search()"><img src="statics/image/recom.png" style="height: 20px"/>&nbsp;<span style="font-size: 17px">我的推荐</span></el-menu-item>
+
+                    <el-menu-item index='2' @click="sortType=2; disable=false; showScored()"><img src="statics/image/favor.png" style="height: 20px" />&nbsp;<span style="font-size: 17px">我的打分</span></el-menu-item>
+
+                </el-card>
+
+            </el-menu>
+
+            <!-- 返回顶部按钮 -->
+            <el-button class="returnToTop">返回顶部</el-button>
+        </el-aside>
+        <el-container>
+            <!-- 主体部分 -->
+            <el-main  style="margin-top: 30px">
+                <el-card v-for="movie in showList" :key="movie.Index" style="margin-top: 30px; margin-right: 100px;">
+                    <template>
+                        <el-row :gutter="19">
+                            <el-col :span="12">
+                                <!-- 显示标题和打分 -->
+                                <span class="linkTitle" v-html=movie.Name @click="jumpTo(movie.Url)"></span>
+                            </el-col>
+                            <el-col :span="6">
+                                <span>
+                                    <el-rate
+                                    v-model="movie.Score"
+                                    :colors="colors"
+                                    allow-half
+                                    show-text
+                                    @change="Score(movie.Index,movie.Score)"
+                                    >
+                                    </el-rate>
+                                </span>
+                            </el-col>
+
+                        </el-row>
+                       
+                        <el-row style="padding-top: 10px;">
+                            <!-------------序号------------->
+                            <span id="Index" class="inf">Index: </span> <span class="inf Ind" v-text=movie.Index></span>
+                            <!--------------推荐指数或者打分----------------->
+                            <span id="Score" class="inf" style="padding-left: 30px">Score: </span> <span class="inf Sco" v-text=movie.Score></span>
+
+                        </el-row>
+                        
+                        <!--<el-row>-->
+                            
+                            <!-- <span class="inf"> -- 点击量: </span> <span class="inf clickNum" v-text=news.clickNum></span> -->
+                        <!--</el-row>-->
+                        <!--------- 时间和正文 ---------->
+                        <el-row style="margin-top: 10px;">
+                            <span class="inf time" v-text=movie.Date></span>
+                            <!-- <span>-</span>
+                            <span v-html=news.content></span> -->
+                        </el-row>
+                    </template>
+                </el-card>
+
+            </el-main>
+
+            <el-footer></el-footer>
+            <el-pagination background
+                           layout="prev, pager, next"
+                           :total=movieNum
+                           :current-page=currentPage
+                           @current-change='pageChanged'
+                           hide-on-single-page
+                           style="margin-bottom: 50px;">
+            </el-pagination>
+        </el-container>
+    </el-container>
+    </el-container>
+
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 500)
+                    $('.returnToTop').show();
+                else
+                    $('.returnToTop').hide();
+            });
+            $('.returnToTop').click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 500);
+            });
+        });
+        var vm = new Vue({
+            el: '#app',
+
+            created() {
+                var _self = this;
+                document.onkeydown = function (e) {
+                    var key = window.event.keyCode;
+                    // 回车也能搜索
+                    if (key == 13) {
+                        _self.search();
+                    }
+                }
+            },
+
+            data() {
+                return {
+                    // 是否可用搜索框
+                    disable: false,
+                    userId: '',
+                    // 显示的电影列表
+                    showList: [],
+                    // 当前的种类，默认推荐电影
+                    sortType: 1,
+                    /****** 用于分页 ******/
+                    movieNum: 0,
+                    currentPage: 1,
+                    // 用于给电影打分
+                    sMovieId: '',
+                    val: 0,
+
+                    // 用于打分
+                    value2: null,
+                    colors: ['#99A9BF', '#F7BA2A', '#FF9900'] 
+                    
+                }
+            },
+
+            methods: {
+                // 新闻链接跳转函数
+                jumpTo(url) {
+                    window.open(url, '_blank');
+                },
+                // 点击搜索按钮的触发函数
+                mainSearch() {
+                    console.log(this.sortType);
+                    if (this.sortType == 1) {
+                        this.search();
+                    }
+                    else {
+                        this.showScored();
+                    }
+                },
+
+                // 推荐电影函数
+                search() {
+                    var para = {
+                        'userId': this.userId,
+                        'sortType': this.sortType,
+                        'user': this.user
+                        //'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val(),
+                    };
+                    // ??????????????????? //
+                    var that = this;
+                    $.ajax({
+                        contentType: 'application/json',
+                        url: 'https://localhost:5001/api/ReSys/recommendMovies/' + this.userId,
+                        type: 'get',
+                        // data: JSON.stringify(para),
+                        async: true,
+                        success: function (result) {
+                            if (result.status == '404') {
+                                that.$message({
+                                    showClose: true,
+                                    message: "推荐失败，非法用户名",
+                                    type: 'error'
+                                })
+                                return
+                            }
+                            
+                            that.$message({
+                                showClose: true,
+                                message: '推荐成功！共推荐 ' + 50 + " 部电影",
+                                type: 'success'
+                            })
+                            console.log(result.movieList)
+                            // 获取总的新闻数量
+                            that.movieNum = 50
+                            // 转到第一页
+                            that.currentPage = 1
+                            // 获取新的列表
+                            that.showList = result.movieList
+                            
+
+                        },
+                    })
+                    
+                },
+
+                // 排序方式改变了
+                sortChanged() {
+                    //let para = {
+                    //    'sortType': this.sortType
+                    //    //'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val(),
+                    //};
+                    // ??????????????????? //
+                    //var that = this;
+                    //$.ajax({
+                    //    url: 'https://localhost:5001/api/News/sortChanged/' + that.sortType,
+                    //    type: 'get',
+                    //    async: "true",
+                    //    success: function (result) {
+                    //        // 滚动回页面顶部
+                    //        $('html, body').animate({ scrollTop: 0 }, 500);
+                    //        // 转到第一页
+                    //        that.currentPage = 1
+                    //        // 获取新的列表
+                    //        that.showList = result.showList
+                    //        console.log(result.showList)
+
+                    //    },
+                    //})
+                    var para = {
+                        'userId': this.userId,
+                        'sortType': this.sortType,
+                        'user': this.user
+                        //'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val(),
+                    };
+                    // ??????????????????? //
+                    var that = this;
+                    $.ajax({
+                        contentType: 'application/json',
+                        url: 'https://localhost:5001/api/News/search/',
+                        type: 'post',
+                        data: JSON.stringify(para),
+                        async: true,
+                        success: function (result) {
+                            // 滚动回页面顶部
+                            $('html, body').animate({ scrollTop: 0 }, 500);
+                            // 获取总的新闻数量
+                            that.movieNum = result.nums
+                            // 转到第一页
+                            that.currentPage = 1
+                            // 获取新的列表
+                            that.showList = result.showList
+                            console.log(result.showList)
+
+                        },
+                    })
+                },
+
+                // 页码改变时，绑定的变量也变化
+                pageChanged(currentPage) {
+                    this.currentPage = currentPage
+                    // let para = {
+                    //     'sortType': this.sortType,
+                    //     'currentPage': currentPage,
+                    //     'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val(),
+                    // };
+                    // ??????????????????? //
+                    var that = this;
+                    $.ajax({
+                        url: 'https://localhost:5001/api/ReSys/pageChanged/' + that.currentPage + '/' + that.sortType,
+                        type: 'get',
+                        async: "true",
+                        success: function (result) {
+                            // 滚动回页面顶部
+                            $('html, body').animate({ scrollTop: 0 }, 500);
+                            // 获取新的列表
+                            that.showList = result.movieList
+                            console.log(result.movieList)
+
+                        },
+                    })          
+                },
+
+                // 给电影打分
+                Score(Index, theScore) {
+                    console.log(theScore);
+                    let para = {
+                        'userId': this.userId,
+                        'movieId': Index,
+                        'score': theScore
+                    };
+                    
+                    var that = this;
+                    $.ajax({
+                        contentType: 'application/json',
+                        url: 'https://localhost:5001/api/ReSys/scoreMovie',
+                        type: 'post',
+                        data: JSON.stringify(para),
+                        async: "true",
+                        success: function (result) {
+                            if (result.status == '202') {
+                                that.$message({
+                                    message: '打分成功',
+                                    type: 'success'
+                                })
+                            }
+                            else {
+                                that.$message.error('操作失败')
+                            }
+                        },
+                    })  
+                },
+
+                // 展示收藏新闻
+                showScored() {
+                    // ??????????????????? //
+                    var that = this;
+                    $.ajax({
+                        url: 'https://localhost:5001/api/ReSys/scoredMovies/' + that.userId,
+                        type: 'get',
+                        async: "true",
+                        success: function (result) {
+                            if (result.status == '202') {
+                                that.$message({
+                                    showClose: true,
+                                    message: '查询成功！共给 ' + result.totalNum + " 部电影打过分",
+                                    type: 'success'
+                                })
+                                
+                                // 滚动回页面顶部
+                                $('html, body').animate({ scrollTop: 0 }, 500);
+                                // 获取总的新闻数量
+                                that.movieNum = result.totalNum
+                                // 转到第一页
+                                that.currentPage = 1
+                                // 获取新的列表
+                                that.showList = result.movieList
+                                console.log(result.showList)
+                            }
+                            else {
+                                showClose: true,
+                                that.$message.error('操作失败')
+                            }
+
+                        },
+                    })  
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
